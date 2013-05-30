@@ -1,0 +1,7 @@
+.bundle/
+log/*.log
+pkg/
+spec/*.sqlite3
+.rbx/
+**.sqlite3-journal
+.DS_Store

@@ -1,0 +1,46 @@
+= ActiveRecord Group Count
+
+== Installing
+
+Add it to your project's Gemfile
+
+  gem "active_record_group_count"
+
+and run
+
+  bundle install
+
+== Description
+
+When you do group in Rails (SQL GROUP BY), count will return an ActiveSupport::OrderedHash. Sometimes you want the sum count (count of all the results, not by group). You can do count.keys.count, however this has serious performance issues if you have a lot of groups in the results.
+
+I wrote an ActiveRecord scope that will override the count method to perform a more optimised count query (of course it will now return a FixNum instead of a Hash). You can use this in combination with Kaminari and get much more efficient calculation of total_pages and total_count.
+
+
+== Use
+
+Just use the returns_count_sum scope before calling count:
+
+  MyModel.group(:something).returns_count_sum.count
+
+You can use it with Kaminari too (it's much faster):
+
+  MyModel.group(:something).returns_count_sum.page(1).per(10).total_pages
+
+== Tests
+
+I've tested this project using RSpec.
+
+You can run the tests by running
+
+  rake spec
+
+in the root directory of this gem (so you have to clone it first).
+
+== Problems
+
+If you have problems open an issue here on Github.
+
+== License
+
+This project rocks and uses MIT-LICENSE.
