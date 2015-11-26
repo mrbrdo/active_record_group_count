@@ -17,7 +17,7 @@ module ActiveRecordGroupCount
 
     module ClassMethods
       def returns_count_sum
-        scoped.extending(ExtensionMethods)
+        all.extending(ExtensionMethods)
       end
     end
   end
