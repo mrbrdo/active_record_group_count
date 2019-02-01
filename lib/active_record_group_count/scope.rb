@@ -4,7 +4,7 @@ module ActiveRecordGroupCount
 
     module ExtensionMethods
       def count(*args)
-        scope = except(:select).select("1")
+        scope = except(:select).except(:distinct).select("1")
         scope_sql = if scope.klass.connection.respond_to?(:unprepared_statement)
           scope.klass.connection.unprepared_statement { scope.to_sql }
         else
